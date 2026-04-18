@@ -53,9 +53,12 @@ export function Sidebar({ className }: SidebarProps) {
         className
       )}>
         <div className="p-6">
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
-            BeautyPOS
-          </h1>
+          <div className={cn("flex items-center gap-3", isRTL && "flex-row-reverse")}>
+            <img src="/logo.png" alt="Logo" className="w-12 h-12 object-contain" />
+            <h1 className="text-sm font-black bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent leading-tight uppercase tracking-wider">
+              Nassim <br /> Cosmetique
+            </h1>
+          </div>
         </div>
       </div>
     );
@@ -68,9 +71,12 @@ export function Sidebar({ className }: SidebarProps) {
       className
     )}>
       <div className="p-6">
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
-          BeautyPOS
-        </h1>
+        <div className={cn("flex items-center gap-3", isRTL && "flex-row-reverse")}>
+          <img src="/logo.png" alt="Logo" className="w-12 h-12 object-contain transition-transform hover:scale-110" />
+          <h1 className="text-sm font-black bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent leading-tight uppercase tracking-wider">
+            Nassim <br /> Cosmetique
+          </h1>
+        </div>
       </div>
       
       <nav className="flex-1 px-4 space-y-1">

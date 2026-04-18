@@ -22,6 +22,8 @@ export default function EditProductPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [product, setProduct] = useState<Product | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [price, setPrice] = useState("");
+  const [purchasePrice, setPurchasePrice] = useState("");
   const router = useRouter();
   const params = useParams();
   const productId = params.id as string;
@@ -36,6 +38,10 @@ export default function EditProductPage() {
         setCategories(cats);
         setProduct(prod);
         if (prod?.image_url) setImagePreview(prod.image_url);
+        if (prod) {
+          setPrice(prod.selling_price.toString());
+          setPurchasePrice(prod.purchase_price.toString());
+        }
       } catch (err) {
         toast.error(isRTL ? "فشل تحميل بيانات المنتج" : "Failed to load product data");
       } finally {
@@ -60,6 +66,15 @@ export default function EditProductPage() {
     e.preventDefault();
     setLoading(true);
     const formData = new FormData(e.currentTarget);
+    const sellingPrice = parseFloat(formData.get("price") as string);
+    const costPrice = parseFloat(formData.get("purchase_price") as string);
+
+    if (sellingPrice <= costPrice) {
+      toast.error(isRTL ? "يجب أن يكون سعر البيع أكبر من سعر الشراء" : "Selling price must be greater than purchase price (Profit required)");
+      setLoading(false);
+      return;
+    }
+    
     try {
       const result = await updateProduct(productId, formData);
       if (result.success) {
@@ -141,7 +156,8 @@ export default function EditProductPage() {
                       name="price" 
                       type="number" 
                       step="0.01" 
-                      defaultValue={product.selling_price} 
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
                       placeholder="0.00" 
                       className={cn("h-14 rounded-2xl bg-white border-pink-100 shadow-inner font-black text-lg", isRTL && "text-right")}
                       required 
@@ -153,7 +169,8 @@ export default function EditProductPage() {
                       name="purchase_price" 
                       type="number" 
                       step="0.01" 
-                      defaultValue={product.purchase_price} 
+                      value={purchasePrice}
+                      onChange={(e) => setPurchasePrice(e.target.value)}
                       placeholder="0.00" 
                       className={cn("h-14 rounded-2xl bg-white border-blue-100 shadow-inner font-black text-lg", isRTL && "text-right")}
                       required 

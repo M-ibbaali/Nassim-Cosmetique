@@ -223,7 +223,13 @@ export default function AnalyticsPage() {
                   <Input
                     type="date"
                     value={customStart}
-                    onChange={(e) => setCustomStart(e.target.value)}
+                    onChange={(e) => {
+                      const newStart = e.target.value;
+                      setCustomStart(newStart);
+                      if (customEnd && newStart > customEnd) {
+                        setCustomEnd(newStart);
+                      }
+                    }}
                     className={cn("h-12 w-44 text-xs font-black rounded-2xl border-none shadow-inner bg-accent/10 focus:ring-2 focus:ring-pink-500/20", isRTL ? "pr-12 pl-4 text-right" : "pl-12 pr-4")}
                   />
                 </div>
@@ -233,6 +239,7 @@ export default function AnalyticsPage() {
                   <Input
                     type="date"
                     value={customEnd}
+                    min={customStart}
                     onChange={(e) => setCustomEnd(e.target.value)}
                     className={cn("h-12 w-44 text-xs font-black rounded-2xl border-none shadow-inner bg-accent/10 focus:ring-2 focus:ring-pink-500/20", isRTL ? "pr-12 pl-4 text-right" : "pl-12 pr-4")}
                   />

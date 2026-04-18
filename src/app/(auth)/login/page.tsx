@@ -46,14 +46,16 @@ export default function LoginPage() {
       
       <Card className="w-full max-w-md shadow-2xl border border-white/20 bg-white/70 backdrop-blur-xl relative z-10 transition-all hover:shadow-pink-500/10 rounded-[2rem] overflow-hidden">
         <CardHeader className="space-y-4 text-center pb-8 pt-12">
-          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-pink-500 to-violet-500 rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
-             <Sparkles className="w-8 h-8 text-white" />
+          <div className="space-y-3 pb-4">
+             <div className="mx-auto flex justify-center">
+                <img src="/logo.png" alt="Logo" className="w-24 h-24 object-contain transition-transform hover:scale-110 duration-500" />
+             </div>
+             <CardTitle className="text-4xl font-black bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
+               Nassim <br /> Cosmetique
+             </CardTitle>
           </div>
           <div className="space-y-1">
-            <CardTitle className="text-4xl font-black bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
-              BeautyPOS
-            </CardTitle>
-            <CardDescription className="text-muted-foreground/80 font-bold uppercase tracking-widest text-[10px]">
+            <CardDescription className="text-muted-foreground/80 font-bold uppercase tracking-widest text-[10px] text-center pt-2">
               {t.login.subtitle}
             </CardDescription>
           </div>
@@ -108,7 +110,7 @@ export default function LoginPage() {
       {/* Footer Branding */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center w-full">
          <p className="text-[10px] text-muted-foreground uppercase font-black tracking-[0.2em] opacity-40">
-           BeautyPOS © 2026 | {isRTL ? "إدارة المتاجر الاحترافية" : "Professional Shop Management"}
+           Nassim Cosmetique © 2026 | {isRTL ? "إدارة المتاجر الاحترافية" : "Professional Shop Management"}
          </p>
       </div>
     </div>

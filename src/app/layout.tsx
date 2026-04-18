@@ -5,8 +5,8 @@ import { Metadata } from 'next'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'BeautyPOS | Makeup Shop Management',
-  description: 'Production-ready POS and Inventory system for makeup shops.',
+  title: 'Nassim Cosmetique | Professional Beauty Management',
+  description: 'Production-ready POS and Inventory system for Nassim Cosmetique.',
 }
 
 import { Toaster } from 'sonner'

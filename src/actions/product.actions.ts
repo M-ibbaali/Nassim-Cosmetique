@@ -25,6 +25,10 @@ export async function createProduct(formData: FormData) {
     const purchase_price = parseFloat(purchase_raw);
     const stock_quantity = parseInt(stock_raw) || 0;
 
+    if (selling_price <= purchase_price) {
+      return { success: false, error: 'Selling price must be greater than purchase price (Profit required)' };
+    }
+
     let image_url = null;
 
     if (file && file.size > 0) {
@@ -87,11 +91,19 @@ export async function updateProduct(id: string, formData: FormData) {
       return { success: false, error: 'Name, Selling Price, and Purchase Price are required' };
     }
 
+    const selling_price = parseFloat(price_raw);
+    const purchase_price = parseFloat(purchase_raw);
+    const stock_quantity = parseInt(stock_raw) || 0;
+
+    if (selling_price <= purchase_price) {
+      return { success: false, error: 'Selling price must be greater than purchase price (Profit required)' };
+    }
+
     const updateData: any = { 
       name, 
-      selling_price: parseFloat(price_raw), 
-      purchase_price: parseFloat(purchase_raw),
-      stock_quantity: parseInt(stock_raw) || 0, 
+      selling_price, 
+      purchase_price,
+      stock_quantity, 
       category_id: category_id === "" ? null : category_id 
     };
 

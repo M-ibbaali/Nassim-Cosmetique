@@ -19,6 +19,8 @@ export default function NewProductPage() {
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [price, setPrice] = useState("");
+  const [purchasePrice, setPurchasePrice] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -40,6 +42,15 @@ export default function NewProductPage() {
     e.preventDefault();
     setLoading(true);
     const formData = new FormData(e.currentTarget);
+    const sellingPrice = parseFloat(formData.get("price") as string);
+    const costPrice = parseFloat(formData.get("purchase_price") as string);
+
+    if (sellingPrice <= costPrice) {
+      toast.error(isRTL ? "يجب أن يكون سعر البيع أكبر من سعر الشراء" : "Selling price must be greater than purchase price (Profit required)");
+      setLoading(false);
+      return;
+    }
+
     try {
       const result = await createProduct(formData);
       if (result.success) {
@@ -97,6 +108,8 @@ export default function NewProductPage() {
                       name="price" 
                       type="number" 
                       step="0.01" 
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
                       placeholder="0.00" 
                       className={cn("h-14 rounded-2xl bg-white border-pink-100 shadow-inner font-black text-lg", isRTL && "text-right")}
                       required 
@@ -108,6 +121,8 @@ export default function NewProductPage() {
                       name="purchase_price" 
                       type="number" 
                       step="0.01" 
+                      value={purchasePrice}
+                      onChange={(e) => setPurchasePrice(e.target.value)}
                       placeholder="0.00" 
                       className={cn("h-14 rounded-2xl bg-white border-blue-100 shadow-inner font-black text-lg", isRTL && "text-right")}
                       required 

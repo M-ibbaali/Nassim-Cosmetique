@@ -118,7 +118,7 @@ export const translations = {
       staff: "Staff"
     },
     login: {
-      title: "BeautyPOS Login",
+      title: "Nassim Cosmetique Login",
       subtitle: "Elegance in Business Management",
       email: "Account Email",
       password: "Password",
@@ -270,7 +270,7 @@ export const translations = {
       staff: "Personnel"
     },
     login: {
-      title: "Connexion BeautyPOS",
+      title: "Connexion Nassim Cosmetique",
       subtitle: "Élégance dans la gestion d'entreprise",
       email: "Email du compte",
       password: "Mot de passe",
@@ -422,7 +422,7 @@ export const translations = {
       staff: "موظف"
     },
     login: {
-      title: "تسجيل الدخول",
+      title: "تسجيل الدخول - Nassim Cosmetique",
       subtitle: "الأناقة في إدارة الأعمال",
       email: "البريد الإلكتروني",
       password: "كلمة المرور",

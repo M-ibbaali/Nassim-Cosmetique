@@ -14,14 +14,17 @@ export function MobileHeader() {
     )}>
       <div className={cn("flex items-center gap-4", isRTL && "flex-row-reverse")}>
         <MobileNav />
-        <h1 className="text-xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
-          BeautyPOS
-        </h1>
+        <div className="flex items-center gap-2">
+            <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain" />
+            <h1 className="text-[10px] font-black bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent uppercase tracking-wider leading-none">
+              Nassim <br /> Cosmetique
+            </h1>
+        </div>
       </div>
       
       {/* Space for user avatar or language switcher if needed on mobile header */}
       <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-[10px] font-black text-primary">
-        BP
+        NC
       </div>
     </header>
   );
